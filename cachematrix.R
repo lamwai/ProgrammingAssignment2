@@ -1,5 +1,7 @@
-## Put comments here that give an overall description of what your
-## functions do
+## The following 2 functions, makeCacheMatrix and cacheSolve,  are created to cache potentially time-consuming computations
+## of calculating the inverse of a matrix.
+##
+
 
 ## The function, makeCacheMatrix, creates a special "matrix", which is a list containing the following 4 functions:
 ##  set - set the value of the matrix
@@ -42,7 +44,7 @@ makeCacheMatrix <- function(x = matrix()) {
 ## cacheSolve(myMatrix)
 cacheSolve <- function(x, ...) {
     m <- x$getInverse()
-    if (!is.null(m)) {  ##check if result has been cached
+    if (!is.null(m)) {  ##check if result has been cached 
         message("getting cached data")
         return(m)
     }
@@ -53,7 +55,7 @@ cacheSolve <- function(x, ...) {
         m <- solve(data)    ## if yes, simply use solve() function to inverse the matrix
     } else {
         require(MASS)       ## Otherwise, load MASS package if necessary 
-        m <- ginv(data)     ## and use ginv() function, which is more computationaly expensive, to inverse the matrix
+        m <- ginv(data)     ## and use ginv() function, which is computationaly more expensive, to inverse the matrix
     } 
     x$setInverse(m)     ## store the result in the cache
     m   ## Return a matrix that is the inverse of 'x'
